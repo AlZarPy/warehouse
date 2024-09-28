@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres
+    environment:
+      PGUSER: warehouse
+      PGPASSWORD: warehouse
+      PGDATABASE: warehouse
+    ports:
+      - "5432:5432"
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      PGUSER: warehouse
+      PGPASSWORD: warehouse
+      PGDATABASE: warehouse
+    depends_on:
+      - db
